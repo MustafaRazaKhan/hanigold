@@ -5,13 +5,16 @@ import App from "./App.jsx";
 import "./index.css";
 import { DashboardProvider } from "./Context/Dashboard.jsx";
 import { CategoryProvider } from "./Context/Category.jsx";
+import { ProductProvider } from "./Context/Products.jsx";
 
 createRoot(document.getElementById("root")).render(
   <DashboardProvider>
     <CategoryProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <ProductProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ProductProvider>
     </CategoryProvider>
   </DashboardProvider>
 );

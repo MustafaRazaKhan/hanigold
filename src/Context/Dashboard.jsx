@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const Dashboard = createContext();
 
@@ -16,6 +17,7 @@ const DashboardProvider = ({ children }) => {
   };
   //   todo to change active link color
   const handleType = (type) => {
+    console.log("type", type);
     setType(type);
   };
   return (
@@ -27,6 +29,7 @@ const DashboardProvider = ({ children }) => {
         handleType,
         handleToggleDashboardColor,
         toggleColor,
+        setType,
       }}
     >
       {children}

@@ -14,7 +14,7 @@ const CatList = () => {
       <LeftBar />
       <RightBar>
         {state.isLoading ? <Loader /> : null}
-        <AddBtn icon={<FaPlus />} />
+        <AddBtn icon={<FaPlus />} title="New Category" link="newcat" />
         <div className="table-container overflow-x-scroll w-[100%] p-2">
           <Heading title="Category List" />
           <table className="w-full ">

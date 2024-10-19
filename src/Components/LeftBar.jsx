@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDashboard } from "../Context/Dashboard";
 import { BiSolidCategory } from "react-icons/bi";
 import { MdDashboardCustomize } from "react-icons/md";
@@ -7,9 +7,29 @@ import { FaList, FaCartArrowDown } from "react-icons/fa";
 import { FaProductHunt } from "react-icons/fa6";
 import { PiUserListFill } from "react-icons/pi";
 import SideItem from "./SideItem";
+import { useLocation } from "react-router-dom";
 
 const LeftBar = () => {
-  const { toggleDashboard, type, handleType } = useDashboard();
+  const { toggleDashboard, type, handleType, setType } = useDashboard();
+  // const pathName = useLocation().pathname.split("/")[1];
+  //  todo this is bug useEffect(() => {
+  //   handleType(pathName);
+  //   console.log(pathName);
+  // }, [pathName]);
+
+  useEffect(() => {
+    const savedType = localStorage.getItem("activeType");
+    if (savedType) {
+      setType(savedType); // Set the type to the saved value
+    }
+  }, [setType]);
+
+  // Save the active type in localStorage whenever it changes
+  const handleClick = (newType) => {
+    handleType(newType); // Update the type state
+    localStorage.setItem("activeType", newType); // Save to localStorage
+  };
+
   return (
     <div
       className={
@@ -38,7 +58,7 @@ const LeftBar = () => {
             ? "bg-black text-white mb-2"
             : "bg-white text-black mb-2"
         }
-        onClick={() => handleType("dashboard")}
+        onClick={() => handleClick("dashboard")}
       >
         <SideItem
           name="Dashboard"
@@ -53,7 +73,7 @@ const LeftBar = () => {
             ? "bg-black text-white mb-2"
             : "bg-white text-black mb-2"
         }
-        onClick={() => handleType("newcat")}
+        onClick={() => handleClick("newcat")}
       >
         <SideItem link="newcat" name="New Category" icon={<IoBagAddSharp />} />
       </div>
@@ -64,7 +84,7 @@ const LeftBar = () => {
             ? "bg-black text-white mb-2"
             : "bg-white text-black mb-2"
         }
-        onClick={() => handleType("catlist")}
+        onClick={() => handleClick("catlist")}
       >
         <SideItem name="Category List" link="catlist" icon={<FaList />} />
       </div>
@@ -75,7 +95,7 @@ const LeftBar = () => {
             ? "bg-black text-white mb-2"
             : "bg-white text-black mb-2"
         }
-        onClick={() => handleType("newproduct")}
+        onClick={() => handleClick("newproduct")}
       >
         <SideItem
           name="New Product"
@@ -90,7 +110,7 @@ const LeftBar = () => {
             ? "bg-black text-white mb-2"
             : "bg-white text-black mb-2"
         }
-        onClick={() => handleType("productslist")}
+        onClick={() => handleClick("productslist")}
       >
         <SideItem
           name="Product List"
@@ -106,7 +126,7 @@ const LeftBar = () => {
             ? "bg-black text-white mb-2"
             : "bg-white text-black mb-2"
         }
-        onClick={() => handleType("orderlist")}
+        onClick={() => handleClick("orderlist")}
       >
         <SideItem
           name="Order List"
@@ -120,7 +140,7 @@ const LeftBar = () => {
             ? "bg-black text-white mb-2"
             : "bg-white text-black mb-2"
         }
-        onClick={() => handleType("userlist")}
+        onClick={() => handleClick("userlist")}
       >
         <SideItem name="User List" link="userlist" icon={<PiUserListFill />} />
       </div>

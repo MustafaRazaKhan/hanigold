@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import Button from "../../Components/Button";
 import Loader from "../../Components/Loader";
 import { useCategory } from "../../Context/Category";
+import AddBtn from "../../Components/AddBtn";
+import { FaList } from "react-icons/fa";
 
 const Cat = () => {
   const { handleFields, state, handleSubmit, handleSelect } = useCategory();
@@ -19,18 +21,11 @@ const Cat = () => {
       {/* rightbar */}
       <RightBar>
         {/* loader */}
-        {state.isLoading ? <Loader /> : null}
+        {state?.isLoading && state?.isLoading ? <Loader /> : null}
 
         {/* redirect button */}
 
-        <div className="flex justify-end my-4">
-          <Link
-            to="/catlist"
-            className="bg-blue-900 text-white px-8 lg:py-2 py-1 mx-4 uppercase rounded-sm"
-          >
-            Category List
-          </Link>
-        </div>
+        <AddBtn link="catlist" icon={<FaList />} title="Category List" />
         {/* category form container start */}
         <div className="cat-container flex flex-wrap justify-center items-center  p-[2px]">
           <div className="form-container w-[75%] h-full shadow p-2">
