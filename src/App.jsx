@@ -12,11 +12,9 @@ import OrderList from "./Pages/Orders/OrderList";
 import { useDashboard } from "./Context/Dashboard";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import L from "./Pages/Products/ProductsList";
 
 const App = () => {
-  const { handleToggleDashboard, handleToggleDashboardColor, toggleColor } =
-    useDashboard();
+  const { toggleColor } = useDashboard();
   return (
     <div
       className={

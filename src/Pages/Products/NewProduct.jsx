@@ -13,7 +13,6 @@ import { useProduct } from "../../Context/Products";
 
 const NewProduct = () => {
   const { allCategory } = useCategory().state;
-  console.log(allCategory);
 
   const {
     state,
@@ -21,6 +20,7 @@ const NewProduct = () => {
     handleSubCategory,
     handleProduct,
     handleProductChange,
+    handleFileChange,
   } = useProduct();
   return (
     <div className="flex w-full min-h-screen">
@@ -33,7 +33,7 @@ const NewProduct = () => {
 
         {/* redirect button */}
 
-        <AddBtn link="productslist" icon={<FaList />} title="Products List" />
+        {/* <AddBtn link="productslist" icon={<FaList />} title="Products List" /> */}
         {/* category form container start */}
         <div className="cat-container flex flex-wrap justify-center items-center  p-[2px]">
           <div className="form-container w-[75%] h-full shadow p-2">
@@ -66,6 +66,7 @@ const NewProduct = () => {
                         <Options
                           value={curEle.subCategory}
                           title={curEle.subCategory}
+                          key={curEle._id}
                         />
                       );
                     })}
@@ -138,7 +139,7 @@ const NewProduct = () => {
                   <InputField
                     name="photoPaths"
                     placeholder="Product Image"
-                    onChange={(e) => handleProductChange(e)}
+                    onChange={(e) => handleFileChange(e)}
                     value={state.photoPaths}
                     type="file"
                   />
